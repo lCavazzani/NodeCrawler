@@ -2,7 +2,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var URL = require('url-parse');
 
-var pageToVisit = "http://www.google.com";
+var pageToVisit = "http://www.submarino.com.br/";
 console.log("Visiting page " + pageToVisit);
 request(pageToVisit, function(error, response, body) {
    if(error) {
@@ -13,6 +13,8 @@ request(pageToVisit, function(error, response, body) {
    if(response.statusCode === 200) {
      // Parse the document body
      var $ = cheerio.load(body);
-     console.log("Page title:  " + $('title').text());//ver se consegue pegar qualquer TAG aqui
+     console.log("Nome:  " + $('a.prodTitle').text());//ver se consegue pegar qualquer TAG aqui
+     console.log("Imagem:  " + $('div.prodImg').text());//ver se consegue pegar qualquer TAG aqui
+     console.log("Valor:  " + $('span.salePrice').text());//ver se consegue pegar qualquer TAG aqui
    }
 });
